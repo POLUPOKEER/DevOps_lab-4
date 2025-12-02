@@ -1,0 +1,21 @@
+# --- Стадия сборки ---
+FROM system AS build
+
+WORKDIR /app
+
+# Переменные окружения для сборки
+ARG NODE_ENV=production
+ENV NODE_ENV=$NODE_ENV
+
+# Копируем зависимтости
+COPY app/package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install --omit=dev \
+    && npm cache clean --force
+
+# Копируем весь проект
+COPY app ./
+
+# Сборка 
+RUN npm run build

@@ -1,0 +1,11 @@
+# ---- Системная стадия ----
+FROM alpine:latest AS system
+
+# Рабочая директория
+WORKDIR /app
+
+# Устанавливка ноды и пакетного менеджера
+RUN apk add --no-cache \
+    nodejs \
+    npm \
+    && npm cache clean --force

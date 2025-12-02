@@ -1,0 +1,8 @@
+{
+  "name": "docker-lab",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build step' "
+  }
+}

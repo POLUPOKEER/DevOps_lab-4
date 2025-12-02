@@ -1,0 +1,21 @@
+# ---- Стадия запуска ----
+FROM build AS run
+
+WORKDIR /app
+
+
+# Создаём непривилегированного пользователя
+RUN addgroup -S nodegrp \
+    && adduser -S nodeusr -G nodegrp
+
+
+#Переменные окружения рантайма
+ENV NODE_ENV=production
+ENV PORT=8080
+
+# Переход на созданного юзера
+USER nodeusr
+
+#Запуск
+CMD ["node", "server.js"]
+
